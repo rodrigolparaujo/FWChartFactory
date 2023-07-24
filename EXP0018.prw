@@ -43,31 +43,31 @@ Static Function Grafico(oScroll,nGrafico)
 	cQuery := " SELECT * FROM "+ RETSQLNAME("SE8") + " SE8 "
 	cQuery += " WHERE SE8.D_E_L_E_T_='' "
 	cQuery += " AND E8_FILIAL='"+xFilial("SE8")+"' "
-	cQuery += " AND E8_CONTA='XXXXX-X' AND E8_DTSALAT &gt;= '20190601'"
+	cQuery += " AND E8_CONTA='XXXXX-X' AND E8_DTSALAT >= '20190601'"
 	cQuery += " ORDER BY E8_DTSALAT"
 
-	If ( SELECT("TRBACD") ) &gt; 0
+	If ( SELECT("TRBACD") ) > 0
 		dbSelectArea("TRBACD")
-		TRBACD-&gt;(dbCloseArea())
+		TRBACD->(dbCloseArea())
 	EndIf
 
 	TcQuery cQuery Alias "TRBACD" New
-	TRBACD-&gt;(dbGoTop())
+	TRBACD->(dbGoTop())
 
 	//Se a série for unica o tipo de variável deve ser NUMÉRICO Ex.: (cTitle, 10)
 	//Se for multi série o tipo de variável deve ser Array de numéricos Ex.: (cTitle, {10,20,30} )
-	If TRBACD-&gt;(!EOF())
-		While TRBACD-&gt;(!EOF())
+	If TRBACD->(!EOF())
+		While TRBACD->(!EOF())
 			if nGrafico==LINECHART .OR. nGrafico==BARCOMPCHART 
 				//Neste dois tipos de graficos temos:
 				//(Titulo, {{ Descrição, Valor }})
-				oChart:addSerie( "Conta " + TRBACD-&gt;E8_CONTA   , { { DTOC(STOD(TRBACD-&gt;E8_DTSALAT)), TRBACD-&gt;E8_SALATUA   } } )
+				oChart:addSerie( "Conta " + TRBACD->E8_CONTA   , { { DTOC(STOD(TRBACD->E8_DTSALAT)), TRBACD->E8_SALATUA   } } )
 			Else
 				//Aqui temos:
 				//(Titulo, Valor)
-				oChart:AddSerie(DTOC(STOD(TRBACD-&gt;E8_DTSALAT)),TRBACD-&gt;E8_SALATUA)
+				oChart:AddSerie(DTOC(STOD(TRBACD->E8_DTSALAT)),TRBACD->E8_SALATUA)
 			Endif
-			TRBACD-&gt;(dbSkip())
+			TRBACD->(dbSkip())
 		End
 		oChart:build()
 	Endif
