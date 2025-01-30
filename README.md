@@ -9,3 +9,4 @@ No exemplo a seguir, utilizaremos a classe FWChartFactory, iremos criar uma roti
 
 <p><img src="/resources/graficos-no-protheus.png"></p>
 
+<center><p><a href="https://dayz-servers.org/server/170059/"><img src="https://dayz-servers.org/server/170059/banners/leaderboard-1.png" border="0" class="img-fluid"></a></p></center>
